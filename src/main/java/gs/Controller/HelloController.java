@@ -26,7 +26,7 @@ public class HelloController {
     @ResponseBody
     @RequestMapping("/data")
     public Map<Object,Object> data() {
-        System.out.println("data");
+        //System.out.println("data");
         Map<Object,Object> map = new HashMap<Object,Object>();
         map.put("1", "1");
         map.put("2", "2");
