@@ -11,18 +11,25 @@ import java.util.Map;
 import javax.persistence.ParameterMode;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.procedure.ProcedureCall;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import gs.utility.*;
+import gs.AppConfig;
 
 public class test {
 
     public Map<Object,Object> DoTest() {
 
+        AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext ();
+        ctx.register(AppConfig.class);
+        ctx.refresh();
+        SessionFactory sessionFactory = ctx.getBean(SessionFactory.class);
+        ctx.close();
+
         Map<Object,Object> map = new HashMap<Object,Object>();
-        hibernateSessionFactory hh=new hibernateSessionFactory();
-        Session session = hh.getSession();
+        Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         try {
             String DateStr="2019/06";
