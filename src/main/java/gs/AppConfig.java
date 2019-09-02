@@ -27,9 +27,9 @@ public class AppConfig {
     @Autowired
     DataSourceProperties dataSourceProperties;
 
-    @Bean
     //@ConfigurationProperties(prefix = DataSourceProperties.PREFIX)
-    @ConfigurationProperties()
+    @Bean
+    @ConfigurationProperties
     DataSource realDataSource() {
         DataSource dataSource = DataSourceBuilder
                 .create(this.dataSourceProperties.getClassLoader())

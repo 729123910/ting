@@ -72,7 +72,7 @@ public class test {
         AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext ();
         ctx.register(AppConfig.class);
         ctx.refresh();
-        DataSource data = ctx.getBean(DataSource.class);
+        //DataSource data = ctx.getBean(DataSource.class);
         ctx.close();
     }
 }
