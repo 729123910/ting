@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+</head>
+<body>
+<p>
+    <span th:text="${hello}">D page!</span>
+</p>
+<script src="/jq/jquery-1.9.1.js"></script>
+<script>
+    $.ajax({
+        type: "get",
+        url: "/data",
+        success: function (response) {
+            console.log(response);
+        }
+    });
+</script>
+</body>
+</html>
