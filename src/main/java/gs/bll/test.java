@@ -15,11 +15,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.procedure.ProcedureCall;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import gs.AppConfig;
 
 public class test {
+
+    @Autowired
+    DataSourceProperties dataSourceProperties;
 
     public Map<Object,Object> DoTest() {
         AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext ();
