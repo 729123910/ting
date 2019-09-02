@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.ParameterMode;
+import javax.sql.DataSource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,7 +22,6 @@ import gs.AppConfig;
 public class test {
 
     public Map<Object,Object> DoTest() {
-
         AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext ();
         ctx.register(AppConfig.class);
         ctx.refresh();
@@ -66,5 +66,13 @@ public class test {
             session.close();
         }
         return map;
+    }
+
+    public void DoTest1() {
+        AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext ();
+        ctx.register(AppConfig.class);
+        ctx.refresh();
+        DataSource data = ctx.getBean(DataSource.class);
+        ctx.close();
     }
 }

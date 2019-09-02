@@ -19,6 +19,8 @@ public class HelloController {
     @ResponseBody
     @RequestMapping("/text")
     public String text(Model model) {
+        test tst=new test();
+        tst.DoTest1();
         return "text";
     }
 
