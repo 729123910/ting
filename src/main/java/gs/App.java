@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"gs.Controller,gs.config"}) 
+@ComponentScan(basePackages = {"gs.controller,gs.config"}) 
 public class App {
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
