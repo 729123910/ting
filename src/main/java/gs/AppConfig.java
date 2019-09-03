@@ -1,56 +1,35 @@
 package gs;
 
-import net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.context.annotation.Primary;
+
+import gs.bll.Beantest;
 
 import javax.sql.DataSource;
 
-import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.persistence.EntityManagerFactory;
-
-
 @Configuration
 public class AppConfig {
-    
+
     public AppConfig() {
-        System.out.println("TestConfiguration容器启动初始化。。。");
+        System.out.println("AppConfig容器启动初始化。。。");
     }
 
-    @Autowired
-    DataSourceProperties dataSourceProperties;
-
-    //@ConfigurationProperties(prefix = DataSourceProperties.PREFIX)
+    // 一般情况下只能有@Controller的类下用@Autowired使用
     @Bean
-    @ConfigurationProperties
-    DataSource realDataSource() {
-        DataSource dataSource = DataSourceBuilder
-                .create(this.dataSourceProperties.getClassLoader())
-                .url(this.dataSourceProperties.getUrl())
-                .username(this.dataSourceProperties.getUsername())
-                .password(this.dataSourceProperties.getPassword())
-                .build();
-        return dataSource;
+    public Beantest beantest() {
+        Beantest bean = new Beantest();
+        bean.a = 1;
+        bean.b = 2;
+        bean.i = 3;
+        return bean;
     }
 
     @Bean
-    @Primary
-    DataSource dataSource() {
-        return new DataSourceSpy(realDataSource());
-    }
-
-    @Bean
-    public SessionFactory sessionFactory(EntityManagerFactory factory) {
-        if (factory.unwrap(SessionFactory.class) == null) {
-            throw new NullPointerException("factory is not a hibernate factory");
-        }
-        return factory.unwrap(SessionFactory.class);
+    @ConfigurationProperties(prefix = "spring.datasource.oracle")
+    public DataSource oracleDataSource() {
+        return DataSourceBuilder.create().build();
     }
 }

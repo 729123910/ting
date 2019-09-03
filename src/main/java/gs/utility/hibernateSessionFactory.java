@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class hibernateSessionFactory {
 
-    @Autowired
-    private  EntityManagerFactory entityManagerFactory;
+    // @Autowired
+    // private  EntityManagerFactory entityManagerFactory;
 
-    public  Session getSession() {
-        return entityManagerFactory.unwrap(SessionFactory.class).openSession();
-    }
+    // public  Session getSession() {
+    //     return entityManagerFactory.unwrap(SessionFactory.class).openSession();
+    // }
 
 
 }

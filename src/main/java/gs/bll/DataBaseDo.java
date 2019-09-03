@@ -15,29 +15,23 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.procedure.ProcedureCall;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import gs.AppConfig;
 
-public class test {
+public class DataBaseDo {
 
-    @Autowired
-    DataSourceProperties dataSourceProperties;
-
-    public Map<Object,Object> DoTest() {
-        AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext ();
-        ctx.register(AppConfig.class);
-        ctx.refresh();
-        SessionFactory sessionFactory = ctx.getBean(SessionFactory.class);
-        ctx.close();
-
-        Map<Object,Object> map = new HashMap<Object,Object>();
+    
+    
+    /** 
+     * @param sessionFactory
+     * @return Map<Object, Object>
+     */
+    public Map<Object, Object> HibernateDo(SessionFactory sessionFactory) {
+        Map<Object, Object> map = new HashMap<Object, Object>();
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         try {
-            String DateStr="2019/06";
+            String DateStr = "2019/06";
             ProcedureCall pc = session.createStoredProcedureCall("SE_PRO_FILETABLE_FIVE");
             pc.registerParameter("DateStr", String.class, ParameterMode.IN).bindValue(DateStr);
             pc.registerParameter("RefCursor", Cursor.class, ParameterMode.REF_CURSOR);
@@ -73,11 +67,15 @@ public class test {
         return map;
     }
 
-    public void DoTest1() {
-        AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext ();
-        ctx.register(AppConfig.class);
-        ctx.refresh();
-        //DataSource data = ctx.getBean(DataSource.class);
-        ctx.close();
+    
+    /** 
+     * @param ds
+     * @return List<Map<String, Object>>
+     */
+    public List<Map<String, Object>> Jdbc_queryForList(DataSource ds) {
+        JdbcTemplate jdbcTemplate=new JdbcTemplate(ds);
+        String sql = "select * from A_USERS ";
+        List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
+        return list;
     }
 }
