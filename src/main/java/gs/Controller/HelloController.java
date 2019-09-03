@@ -4,9 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 import javax.sql.DataSource;
 
@@ -18,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import gs.bll.Beantest;
+// import gs.bll.Beantest;
 import gs.bll.DataBaseDo;
 
 
@@ -26,8 +24,8 @@ import gs.bll.DataBaseDo;
 public class HelloController {
     
     //注入Beantest实例（测试）
-    @Autowired
-    private  Beantest beantest;
+    // @Autowired
+    // private  Beantest beantest;
 
     //注入DataSource（传递给JdbcTemplate）
     @Autowired 
