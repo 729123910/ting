@@ -1,4 +1,4 @@
-package gs.Controller;
+package gs.controller;
 
 import java.util.HashMap;
 import java.util.List;
