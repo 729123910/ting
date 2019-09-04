@@ -20,8 +20,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public class DataBaseDo {
 
-    
-    
     /** 
      * @param sessionFactory
      * @return Map<Object, Object>
